@@ -6,7 +6,10 @@ public class GameManager : MonoBehaviour
 {
 	private static GameManager instance = null;
 
+	public PlayerController playerController;
+	public Animator uiAnimator;
 	public float moveSpeed;
+	public bool isStarted = false;
 
 	private GameManager()
 	{
@@ -24,6 +27,12 @@ public class GameManager : MonoBehaviour
 		{
 			instance = value;
 		}
+	}
+
+	public void StartGame()
+	{
+		playerController.StartFly();
+		uiAnimator.SetBool("Start", true);
 	}
 
 	public void SetPause(bool pause)
