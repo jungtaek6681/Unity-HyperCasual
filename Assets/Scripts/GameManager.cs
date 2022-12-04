@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 
 	public PlayerController playerController;
 	public Animator uiAnimator;
+	public GameObject pipeSpawner;
 	public float moveSpeed;
 	public bool isStarted = false;
 
@@ -33,6 +34,7 @@ public class GameManager : MonoBehaviour
 	{
 		playerController.StartFly();
 		uiAnimator.SetBool("Start", true);
+		pipeSpawner.SetActive(true);
 	}
 
 	public void SetPause(bool pause)
