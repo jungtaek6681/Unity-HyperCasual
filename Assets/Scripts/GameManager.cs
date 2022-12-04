@@ -26,4 +26,9 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
+	public void SetPause(bool pause)
+	{
+		Time.timeScale = pause ? 0f : 1f;
+	}
+
 }
