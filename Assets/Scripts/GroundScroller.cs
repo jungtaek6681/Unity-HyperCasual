@@ -5,13 +5,12 @@ using UnityEngine;
 public class GroundScroller : MonoBehaviour
 {
 	public GameObject[] grounds;
-	public float moveSpeed;
 
 	public void Update()
 	{
 		for (int i = 0; i < grounds.Length; i++)
 		{
-			grounds[i].transform.Translate(Vector3.left * moveSpeed * Time.deltaTime, Space.World);
+			grounds[i].transform.Translate(Vector3.left * GameManager.Instance.moveSpeed * Time.deltaTime, Space.World);
 
 			if (grounds[i].transform.position.x < -7)
 			{
