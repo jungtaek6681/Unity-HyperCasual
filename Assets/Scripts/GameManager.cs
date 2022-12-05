@@ -11,9 +11,11 @@ public class GameManager : MonoBehaviour
 	public Animator uiAnimator;
 	public GameObject pipeSpawner;
 	public TextMeshProUGUI scoreUI;
+	public TextMeshProUGUI resultScoreUI;
+	public TextMeshProUGUI bestScoreUI;
 	public float moveSpeed;
-	public bool isStarted = false;
 
+	private int bestScore = 0;
 	private int score = 0;
 
 	private GameManager()
@@ -43,7 +45,8 @@ public class GameManager : MonoBehaviour
 
 	public void EndGame()
 	{
-		
+		SetPause(true);
+		uiAnimator.SetBool("End", true);
 	}
 
 	public void SetPause(bool pause)
@@ -55,6 +58,13 @@ public class GameManager : MonoBehaviour
 	{
 		score++;
 		scoreUI.text = score.ToString();
+		resultScoreUI.text = score.ToString();
+
+		if (score > bestScore)
+		{
+			bestScore = score;
+		}
+		bestScoreUI.text = bestScore.ToString();
 	}
 
 }
