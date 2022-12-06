@@ -4,11 +4,15 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(AudioSource))]
+[RequireComponent(typeof(Collider2D))]
+[RequireComponent(typeof(Animator))]
 public class PlayerController : MonoBehaviour
 {
 	private Rigidbody2D rigid;
-	public AudioSource audioSource;
+	private Collider2D collider2d;
+	private Animator anim;
+	public AudioSource jumpSound;
+	public AudioSource dieSound;
 
 	[SerializeField]
 	private float jumpSpeed;
@@ -19,7 +23,8 @@ public class PlayerController : MonoBehaviour
 	private void Awake()
 	{
 		rigid = GetComponent<Rigidbody2D>();
-		audioSource = GetComponent<AudioSource>();
+		collider2d = GetComponent<Collider2D>();
+		anim = GetComponent<Animator>();
 	}
 
 	private void Update()
@@ -41,11 +46,19 @@ public class PlayerController : MonoBehaviour
 			return;
 
 		rigid.velocity = Vector3.up * jumpSpeed;
-		audioSource.Play();
+		jumpSound.Play();
+	}
+
+	public void Die()
+	{
+		collider2d.enabled = false;
+		anim.SetBool("Die", true);
+		dieSound.Play();
 	}
 
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
+		Die();
 		OnDied?.Invoke();
 	}
 

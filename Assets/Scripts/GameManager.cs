@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public enum GameState { Ready, Play, Pause, End }
-
 public class GameManager : MonoBehaviour
 {
 	public PlayerController playerController;
 	public GameObject pipeSpawner;
 	public UIManager uiManager;
+
+	public AudioSource scoreSound;
 
 	private int bestScore = 0;
 	private int score = 0;
@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
 	public void ReadyGame()
 	{
 		SetPause(false);
+		Config.moveSpeed = 3;
 
 		uiManager.ReadyGame();
 		playerController.SetGravity(false);
@@ -39,10 +40,11 @@ public class GameManager : MonoBehaviour
 
 	public void EndGame()
 	{
-		SetPause(true);
+		// SetPause(true);
+		Config.moveSpeed = 0;
 
 		uiManager.EndGame();
-		playerController.SetGravity(false);
+		playerController.SetGravity(true);
 		pipeSpawner.SetActive(false);
 	}
 
@@ -53,6 +55,8 @@ public class GameManager : MonoBehaviour
 
 	public void ScoreUp()
 	{
+		scoreSound.Play();
+
 		score++;
 		if (score > bestScore)
 		{
