@@ -11,12 +11,16 @@ public class GameManager : MonoBehaviour
 
 	public AudioSource scoreSound;
 
-	private int bestScore = 0;
+	private int bestScore;
 	private int score = 0;
 
 	private void Start()
 	{
 		ReadyGame();
+
+		bestScore = PlayerPrefs.HasKey("BestScore") ? PlayerPrefs.GetInt("BestScore") : 0;
+		uiManager.SetScore(score);
+		uiManager.SetBestScore(bestScore);
 	}
 
 	public void ReadyGame()
@@ -61,6 +65,7 @@ public class GameManager : MonoBehaviour
 		if (score > bestScore)
 		{
 			bestScore = score;
+			PlayerPrefs.SetInt("BestScore", bestScore);
 		}
 
 		uiManager.SetScore(score);
