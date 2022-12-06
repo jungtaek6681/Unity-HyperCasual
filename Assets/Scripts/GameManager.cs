@@ -3,50 +3,47 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+public enum GameState { Ready, Play, Pause, End }
+
 public class GameManager : MonoBehaviour
 {
-	private static GameManager instance = null;
-
 	public PlayerController playerController;
-	public Animator uiAnimator;
 	public GameObject pipeSpawner;
-	public TextMeshProUGUI scoreUI;
-	public TextMeshProUGUI resultScoreUI;
-	public TextMeshProUGUI bestScoreUI;
-	public float moveSpeed;
+	public UIManager uiManager;
 
 	private int bestScore = 0;
 	private int score = 0;
 
-	private GameManager()
+	private void Start()
 	{
-		instance = this;
+		ReadyGame();
 	}
 
-	public static GameManager Instance
+	public void ReadyGame()
 	{
-		get
-		{
-			if (instance != null) return instance;
-			else return new GameManager();
-		}
-		private set
-		{
-			instance = value;
-		}
+		SetPause(false);
+
+		uiManager.ReadyGame();
+		playerController.SetGravity(false);
+		pipeSpawner.SetActive(false);
 	}
 
-	public void StartGame()
+	public void PlayGame()
 	{
-		playerController.StartFly();
-		uiAnimator.SetBool("Start", true);
+		SetPause(false);
+
+		uiManager.StartGame();
+		playerController.SetGravity(true);
 		pipeSpawner.SetActive(true);
 	}
 
 	public void EndGame()
 	{
 		SetPause(true);
-		uiAnimator.SetBool("End", true);
+
+		uiManager.EndGame();
+		playerController.SetGravity(false);
+		pipeSpawner.SetActive(false);
 	}
 
 	public void SetPause(bool pause)
@@ -57,14 +54,13 @@ public class GameManager : MonoBehaviour
 	public void ScoreUp()
 	{
 		score++;
-		scoreUI.text = score.ToString();
-		resultScoreUI.text = score.ToString();
-
 		if (score > bestScore)
 		{
 			bestScore = score;
 		}
-		bestScoreUI.text = bestScore.ToString();
+
+		uiManager.SetScore(score);
+		uiManager.SetBestScore(bestScore);
 	}
 
 }

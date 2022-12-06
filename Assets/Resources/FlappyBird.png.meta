@@ -709,18 +709,60 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 174
-        y: 121
+        y: 122
         width: 17
-        height: 13
+        height: 12
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 1, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: 9031899534c8bac40990e4dc16c2d042
       internalID: -770185018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FlappyBird_5
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 141
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87ad16faaae7f7d4ba981c1174d4a30f
+      internalID: -652721334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FlappyBird_6
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 142
+        width: 3
+        height: 3
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32a3908476ba45b4ba46a395d07d152e
+      internalID: -2129818435
       vertices: []
       indices: 
       edges: []
@@ -737,7 +779,7 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       FlappyBird_30: 1001240946
-      FlappyBird_17: -607739167
+      FlappyBird_15: 717670358
       FlappyBird_55: 73449693
       FlappyBird_27: 143804712
       FlappyBird_28: 670507624
@@ -747,7 +789,7 @@ TextureImporter:
       FlappyBird_5: -652721334
       FlappyBird_51: -559035011
       FlappyBird_58: -1190990897
-      FlappyBird_45: 134144918
+      FlappyBird_23: -1447271610
       FlappyBird_26: -1628255695
       FlappyBird_8: -160826136
       FlappyBird_46: -2010583515
@@ -792,8 +834,8 @@ TextureImporter:
       FlappyBird_49: -1268019302
       FlappyBird_9: -2069032382
       FlappyBird_24: -789900391
-      FlappyBird_23: -1447271610
-      FlappyBird_15: 717670358
+      FlappyBird_45: 134144918
+      FlappyBird_17: -607739167
       FlappyBird_21: -1200081450
   spritePackingTag: 
   pSDRemoveMatte: 0

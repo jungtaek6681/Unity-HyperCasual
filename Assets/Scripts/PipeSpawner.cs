@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PipeSpawner : MonoBehaviour
 {
-	public PipeController pipe;
+	public GameObject pipe;
 	public Transform spawnPosition;
 	public float repeatTime;
 	public float randomRange;
@@ -26,9 +26,8 @@ public class PipeSpawner : MonoBehaviour
 		while (true)
 		{
 			yield return new WaitForSeconds(repeatTime);
-			float random = Random.Range(-1 * randomRange, randomRange);
-			PipeController pipeController = Instantiate(pipe, spawnPosition.position + new Vector3(0, random, 0), spawnPosition.rotation);
-			pipeController.moveSpeed = GameManager.Instance.moveSpeed;
+			float random = Random.Range(-1 * randomRange, 1 * randomRange);
+			Instantiate(pipe, spawnPosition.position + new Vector3(0, random, 0), spawnPosition.rotation);
 		}
 	}
 }

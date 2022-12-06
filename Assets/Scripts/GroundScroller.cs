@@ -10,7 +10,7 @@ public class GroundScroller : MonoBehaviour
 	{
 		for (int i = 0; i < grounds.Length; i++)
 		{
-			grounds[i].transform.Translate(Vector3.left * GameManager.Instance.moveSpeed * Time.deltaTime, Space.World);
+			grounds[i].transform.Translate(Vector3.left * Config.moveSpeed * Time.deltaTime, Space.World);
 
 			if (grounds[i].transform.position.x < -7)
 			{

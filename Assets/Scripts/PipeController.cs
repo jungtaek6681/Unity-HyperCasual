@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class PipeController : MonoBehaviour
 {
-	public float moveSpeed;
-
 	private void Update()
 	{
-		transform.Translate(Vector2.left * moveSpeed * Time.deltaTime);
+		transform.Translate(Vector2.left * Config.moveSpeed * Time.deltaTime);
 
-		if (transform.position.x < -5)
+		if (transform.position.x < -10)
 			Destroy(gameObject);
 	}
 }

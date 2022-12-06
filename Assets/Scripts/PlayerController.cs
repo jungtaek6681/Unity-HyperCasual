@@ -4,37 +4,44 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(AudioSource))]
 public class PlayerController : MonoBehaviour
 {
 	private Rigidbody2D rigid;
-	private Animator ani;
-
-	public UnityEvent OnDied;
-	public UnityEvent OnScored;
+	public AudioSource audioSource;
 
 	[SerializeField]
 	private float jumpSpeed;
 
+	public UnityEvent OnDied;
+	public UnityEvent OnScored;
+
 	private void Awake()
 	{
 		rigid = GetComponent<Rigidbody2D>();
-		ani = GetComponent<Animator>();
+		audioSource = GetComponent<AudioSource>();
 	}
 
 	private void Update()
 	{
-		transform.right = rigid.velocity + Vector2.right * 10;
+		if (Time.timeScale <= 0)
+			return;
+
+		transform.right = rigid.velocity + Vector2.right * jumpSpeed;
 	}
 
-	public void StartFly()
+	public void SetGravity(bool gravity)
 	{
-		rigid.simulated = true;
+		rigid.simulated = gravity;
 	}
 
 	public void Jump()
 	{
+		if (Time.timeScale <= 0)
+			return;
+
 		rigid.velocity = Vector3.up * jumpSpeed;
+		audioSource.Play();
 	}
 
 	private void OnCollisionEnter2D(Collision2D collision)
