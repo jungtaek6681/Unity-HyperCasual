@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
@@ -6,6 +7,8 @@ public class PlayerController : MonoBehaviour
     [Header("Component")]
     [SerializeField] new Rigidbody2D rigidbody;
     [SerializeField] PlayerInput input;
+    [SerializeField] Animator animator;
+    [SerializeField] new Collider2D collider;
 
     [Header("Spec")]
     [SerializeField] float moveSpeed;
@@ -39,8 +42,21 @@ public class PlayerController : MonoBehaviour
         rigidbody.velocity = Vector2.up * jumpSpeed;
     }
 
+    private void Die()
+    {
+        animator.SetTrigger("Die");
+        collider.enabled = false;
+        input.enabled = false;
+        Manager.Scene.CurScene<GameScene>().GameOver();
+    }
+
     private void OnJump(InputValue value)
     {
         Jump();
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Die();
     }
 }

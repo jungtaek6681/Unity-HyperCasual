@@ -1,8 +1,7 @@
-using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-public class GameScene : MonoBehaviour
+public class GameScene : BaseScene
 {
     public enum State { Ready, Play, GameOver }
 
