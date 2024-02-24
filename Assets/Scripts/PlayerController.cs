@@ -5,6 +5,7 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Component")]
     [SerializeField] new Rigidbody2D rigidbody;
+    [SerializeField] PlayerInput input;
 
     [Header("Spec")]
     [SerializeField] float moveSpeed;
@@ -13,6 +14,18 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         Rotate();
+    }
+
+    public void Ready()
+    {
+        input.enabled = false;
+        rigidbody.simulated = false;
+    }
+
+    public void Fly()
+    {
+        input.enabled = true;
+        rigidbody.simulated = true;
     }
 
     private void Rotate()
