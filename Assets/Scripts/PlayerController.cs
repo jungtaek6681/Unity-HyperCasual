@@ -50,6 +50,11 @@ public class PlayerController : MonoBehaviour
         Manager.Scene.CurScene<GameScene>().GameOver();
     }
 
+    private void GetScore()
+    {
+        Manager.Scene.CurScene<GameScene>().GetScore();
+    }
+
     private void OnJump(InputValue value)
     {
         Jump();
@@ -58,5 +63,10 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Die();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        GetScore();
     }
 }

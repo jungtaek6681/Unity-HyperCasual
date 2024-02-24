@@ -7,6 +7,10 @@ public class GameScene : BaseScene
 
     public State curState { get; private set; }
 
+    private int curScore;
+    public int CurScore { get { return curScore; } private set { curScore = value; OnCurScoreChanged?.Invoke(value); } }
+    public event UnityAction<int> OnCurScoreChanged;
+
     public UnityEvent OnReadyed;
     public UnityEvent OnPlayed;
     public UnityEvent OnGameOvered;
@@ -46,6 +50,11 @@ public class GameScene : BaseScene
     public void GameOver()
     {
         ChangeState(State.GameOver);
+    }
+
+    public void GetScore()
+    {
+        CurScore++;
     }
 
     private void OnPlay(InputValue value)
