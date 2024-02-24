@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     [Header("Spec")]
     [SerializeField] float moveSpeed;
     [SerializeField] float jumpSpeed;
+    [SerializeField] AudioSource jumpSound;
+    [SerializeField] AudioSource dieSound;
 
     private void Update()
     {
@@ -40,6 +42,7 @@ public class PlayerController : MonoBehaviour
     {
         // rigidbody.AddForce(Vector2.up * jumpPower, ForceMode.Impulse);
         rigidbody.velocity = Vector2.up * jumpSpeed;
+        jumpSound.Play();
     }
 
     private void Die()
@@ -47,6 +50,7 @@ public class PlayerController : MonoBehaviour
         animator.SetTrigger("Die");
         collider.enabled = false;
         input.enabled = false;
+        dieSound.Play();
         Manager.Scene.CurScene<GameScene>().GameOver();
     }
 

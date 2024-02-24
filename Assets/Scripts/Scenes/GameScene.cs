@@ -1,3 +1,4 @@
+using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
@@ -10,6 +11,8 @@ public class GameScene : BaseScene
     private int curScore;
     public int CurScore { get { return curScore; } private set { curScore = value; OnCurScoreChanged?.Invoke(value); } }
     public event UnityAction<int> OnCurScoreChanged;
+
+    [SerializeField] AudioSource scoreSound;
 
     public UnityEvent OnReadyed;
     public UnityEvent OnPlayed;
@@ -55,6 +58,7 @@ public class GameScene : BaseScene
     public void GetScore()
     {
         CurScore++;
+        scoreSound.Play();
     }
 
     private void OnPlay(InputValue value)
