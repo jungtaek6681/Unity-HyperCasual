@@ -58,6 +58,10 @@ public class GameScene : BaseScene
     public void GetScore()
     {
         CurScore++;
+        if (curScore > Manager.Data.BestScore)
+        {
+            Manager.Data.BestScore = curScore;
+        }
         scoreSound.Play();
     }
 
